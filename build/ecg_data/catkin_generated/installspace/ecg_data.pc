@@ -1,8 +1,0 @@
-prefix=/home/heba/dev_ws/install
-
-Name: ecg_data
-Description: Description of ecg_data
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: 

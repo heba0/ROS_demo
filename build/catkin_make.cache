@@ -1,2 +1,0 @@
-ecg_data
--DCATKIN_DEVEL_PREFIX=/home/heba/dev_ws/devel -DCMAKE_INSTALL_PREFIX=/home/heba/dev_ws/install -G Unix Makefiles
