@@ -1,0 +1,3 @@
+[0.012s] Invoking command in '/home/heba/dev_ws/build/articubot_one': /usr/bin/cmake /home/heba/dev_ws/src/articubot_one -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/heba/dev_ws/install/articubot_one
+[0.019s] CMake Error: The source "/home/heba/dev_ws/src/articubot_one/CMakeLists.txt" does not match the source "/home/heba/dev_ws/src/articubot_one/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
+[0.021s] Invoked command in '/home/heba/dev_ws/build/articubot_one' returned '1': /usr/bin/cmake /home/heba/dev_ws/src/articubot_one -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/heba/dev_ws/install/articubot_one
