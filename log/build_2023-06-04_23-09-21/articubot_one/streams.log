@@ -1,0 +1,22 @@
+[0.013s] Invoking command in '/home/heba/dev_ws/build/articubot_one': /usr/bin/cmake /home/heba/dev_ws/src/articubot_one -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/heba/dev_ws/install/articubot_one
+[0.026s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.056s] -- Using PYTHON_EXECUTABLE: /home/heba/anaconda3/bin/python3
+[0.083s] Traceback (most recent call last):
+[0.083s]   File "/opt/ros/foxy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py", line 21, in <module>
+[0.083s]     from ament_package.templates import get_environment_hook_template_path
+[0.083s] ModuleNotFoundError: No module named 'ament_package'
+[0.086s] CMake Error at /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_package_templates-extras.cmake:41 (message):
+[0.086s]   execute_process(/home/heba/anaconda3/bin/python3
+[0.086s]   /opt/ros/foxy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py
+[0.086s]   /home/heba/dev_ws/build/articubot_one/ament_cmake_package_templates/templates.cmake)
+[0.087s]   returned error code 1
+[0.087s] Call Stack (most recent call first):
+[0.087s]   /opt/ros/foxy/share/ament_cmake_core/cmake/ament_cmake_coreConfig.cmake:41 (include)
+[0.087s]   /opt/ros/foxy/share/ament_cmake/cmake/ament_cmake_export_dependencies-extras.cmake:15 (find_package)
+[0.087s]   /opt/ros/foxy/share/ament_cmake/cmake/ament_cmakeConfig.cmake:41 (include)
+[0.087s]   CMakeLists.txt:19 (find_package)
+[0.087s] 
+[0.088s] 
+[0.088s] -- Configuring incomplete, errors occurred!
+[0.088s] See also "/home/heba/dev_ws/build/articubot_one/CMakeFiles/CMakeOutput.log".
+[0.089s] Invoked command in '/home/heba/dev_ws/build/articubot_one' returned '1': /usr/bin/cmake /home/heba/dev_ws/src/articubot_one -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/heba/dev_ws/install/articubot_one
