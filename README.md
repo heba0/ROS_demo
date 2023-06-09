@@ -63,64 +63,93 @@ sudo apt-get install ros-$ROS_DISTRO-joy ros-$ROS_DISTRO-teleop-twist-joy \
 To run the turtlebot simulation we will first need to source the ros setup.bash path in each new terminal. As a shortcut, we can instead add the source command to bashrc so it is executed everytime we open a new terminal: 
 
 
-```echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc ```
+```
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc 
+```
 
 
 we will also need to specify a model for the turtlebot as follows: 
-
-  
-```echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc```
+ 
+```
+echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc
+```
 
 In separate terminals run the following three commands:
 
 Gazebo turtlebot3 simulations
 
-```roslaunch turtlebot3_gazebo turtlebot3_world.launch```
+```
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+```
 
 Run turtlebot3_teleop package to allow you to move the turtlebot around (with w,d,a,s,x, keys)
 
-```roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch```
+```
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+```
 
 Rviz Slam visuaization 
 
-```roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping```
+```
+roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
+```
 
 
 ### Publishing dataset data
 
 To publish the data, go to the dev_ws and initialise it
 
-```cd dev_ws```
+```
+cd dev_ws
+```
 
-```catkin_make```
+```
+catkin_make
+```
 
 You will need to source the workspace in each terminal
 
-```source ~/dev_ws/devel/setup.bash```
+```
+source ~/dev_ws/devel/setup.bash
+```
 
 We always need to run a roscore instance for any communication to happen over ROS (roslaunch in the simulation runs roscore by default)
 
-```roscore```
+```
+roscore
+```
 
 Run each of the following commands in a separate terminal to publish the respective health signal data (ecg/hr/rr)
 
-```rosrun ecg_data ecg_publisher.py```
+```
+rosrun ecg_data ecg_publisher.py
+```
 
-```rosrun ecg_data hr_publisher.py```
+```
+rosrun ecg_data hr_publisher.py
+```
 
-```rosrun ecg_data rr_publisher.py```
+```
+rosrun ecg_data rr_publisher.py
+```
    
 To debug or make sure the topics are published and are recieving data, run
 
-```rostopic list```
+```
+rostopic list
+```
 
-```rostopic echo /ecg_data_topic```
+```
+rostopic echo /ecg_data_topic
+```
 
 ### Data Visualization and Running the webserver 
 
 To make the data accessible for the web-application run rosbridge_server
 
-```roslaunch rosbridge_server rosbridge_websocket.launch```
+```
+roslaunch rosbridge_server rosbridge_websocket.launch
+```
 
 You can then go to foxglove studio and visualize the topics of your choice
 
