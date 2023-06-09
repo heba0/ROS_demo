@@ -1,4 +1,4 @@
-### Overview
+## Overview
 
 In this project, I run a ROS-Gazebo SLAM simulation and visualize the image on a web-based dashoboard, as well as read data from a dataset that I have in a folder called "Dataset_ECG_1" and publish the data to the same dashboard.
 
@@ -6,7 +6,7 @@ In this project, I run a ROS-Gazebo SLAM simulation and visualize the image on a
 
 ![Screenshot from 2023-06-08 14-13-50](https://github.com/heba0/ROS_demo/assets/23173305/33eeab9e-2621-4bf6-b940-64628e79cdbb)
 
-### Implementation
+## Implementation
 
 Note: this version uses ROS1 noetic.
 
@@ -23,6 +23,7 @@ To visualize the robot on the web-based dashboard I'm using https://studio.foxgl
 Data publishing is done mainly through the local workspace shared here called ```dev_ws``` and ```ecg_data``` package defined within.
 
 To publish the data read from the dataset I created a custom message of type:
+
 ```
 string signal_type
 string project_id
@@ -37,7 +38,7 @@ Each signal type is published to a separate topic, so we publish 3 topics in tot
 - ```/rr_data_topic```
 - ```/hr_data_topic```
 
-### Prerequisites Installations
+## Prerequisites Installations
 
 Here's a non-exhastive list of installations that can be useful to run the commands in the next section
 
@@ -55,13 +56,15 @@ sudo apt-get install ros-$ROS_DISTRO-joy ros-$ROS_DISTRO-teleop-twist-joy \
   ros--$ROS_DISTRO-rosbridge-server ros-$ROS_DISTRO-turtlebot3* python3-catkin-tools 
 ```
 
-### How to Run
+## How to Run
 
-## Running the simulation
+### Running the simulation
 
 To run the turtlebot simulation we will first need to source the ros setup.bash path in each new terminal. As a shortcut, we can instead add the source command to bashrc so it is executed everytime we open a new terminal: 
 
+
 ```echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc ```
+
 
 we will also need to specify a model for the turtlebot as follows: 
 
@@ -71,39 +74,52 @@ we will also need to specify a model for the turtlebot as follows:
 In separate terminals run the following three commands:
 
 Gazebo turtlebot3 simulations
+
 ```roslaunch turtlebot3_gazebo turtlebot3_world.launch```
 
 Run turtlebot3_teleop package to allow you to move the turtlebot around (with w,d,a,s,x, keys)
+
 ```roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch```
 
 Rviz Slam visuaization 
+
 ```roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping```
 
 
-## Publishing dataset data
+### Publishing dataset data
 
 To publish the data, go to the dev_ws and initialise it
+
 ```cd dev_ws```
+
 ```catkin_make```
 
 You will need to source the workspace in each terminal
+
 ```source ~/dev_ws/devel/setup.bash```
 
 We always need to run a roscore instance for any communication to happen over ROS (roslaunch in the simulation runs roscore by default)
+
 ```roscore```
 
 Run each of the following commands in a separate terminal to publish the respective health signal data (ecg/hr/rr)
+
 ```rosrun ecg_data ecg_publisher.py```
+
 ```rosrun ecg_data hr_publisher.py```
+
 ```rosrun ecg_data rr_publisher.py```
    
 To debug or make sure the topics are published and are recieving data, run
+
 ```rostopic list```
+
 ```rostopic echo /ecg_data_topic```
 
-## Data Visualization and Running the webserver 
+### Data Visualization and Running the webserver 
 
 To make the data accessible for the web-application run rosbridge_server
+
 ```roslaunch rosbridge_server rosbridge_websocket.launch```
 
 You can then go to foxglove studio and visualize the topics of your choice
