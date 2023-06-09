@@ -74,6 +74,7 @@ we will also need to specify a model for the turtlebot as follows:
 echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc
 ```
 
+
 In separate terminals run the following three commands:
 
 Gazebo turtlebot3 simulations
@@ -82,13 +83,15 @@ Gazebo turtlebot3 simulations
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
 
+
 Run turtlebot3_teleop package to allow you to move the turtlebot around (with w,d,a,s,x, keys)
 
 ```
 roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 ```
 
-Rviz Slam visuaization 
+
+Rviz Slam visualization 
 
 ```
 roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
@@ -107,17 +110,20 @@ cd dev_ws
 catkin_make
 ```
 
+
 You will need to source the workspace in each terminal
 
 ```
 source ~/dev_ws/devel/setup.bash
 ```
 
+
 We always need to run a roscore instance for any communication to happen over ROS (roslaunch in the simulation runs roscore by default)
 
 ```
 roscore
 ```
+
 
 Run each of the following commands in a separate terminal to publish the respective health signal data (ecg/hr/rr)
 
@@ -132,6 +138,7 @@ rosrun ecg_data hr_publisher.py
 ```
 rosrun ecg_data rr_publisher.py
 ```
+   
    
 To debug or make sure the topics are published and are recieving data, run
 
@@ -150,6 +157,7 @@ To make the data accessible for the web-application run rosbridge_server
 ```
 roslaunch rosbridge_server rosbridge_websocket.launch
 ```
+
 
 You can then go to foxglove studio and visualize the topics of your choice
 
