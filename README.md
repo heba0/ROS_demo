@@ -39,32 +39,74 @@ Each signal type is published to a separate topic, so we publish 3 topics in tot
 
 ### Prerequisites Installations
 
+Here's a non-exhastive list of installations that can be useful to run the commands in the next section
+
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install ros-$ROS_DISTRO-turtlebot3*
+sudo apt-get install ros-$ROS_DISTRO-joy ros-$ROS_DISTRO-teleop-twist-joy \
+  ros-$ROS_DISTRO-teleop-twist-keyboard ros-$ROS_DISTRO-laser-proc \
+  ros-$ROS_DISTRO-rgbd-launch ros-$ROS_DISTRO-rosserial-arduino \
+  ros-$ROS_DISTRO-rosserial-python ros-$ROS_DISTRO-rosserial-client \
+  ros-$ROS_DISTRO-rosserial-msgs ros-$ROS_DISTRO-amcl ros-$ROS_DISTRO-map-server \
+  ros-$ROS_DISTRO-move-base ros-$ROS_DISTRO-urdf ros-$ROS_DISTRO-xacro \
+  ros-$ROS_DISTRO-compressed-image-transport ros-$ROS_DISTRO-rqt* ros-$ROS_DISTRO-rviz \
+  ros-$ROS_DISTRO-gmapping ros-$ROS_DISTRO-navigation ros-$ROS_DISTRO-interactive-markers\
+  ros--$ROS_DISTRO-rosbridge-server ros-$ROS_DISTRO-turtlebot3* python3-catkin-tools 
 ```
 
 ### How to Run
 
-  ```echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc ```
+## Running the simulation
 
-  ```source ~/dev_ws/devel/setup.bash```
-  
-  ```export TURTLEBOT3_MODEL=waffle```
-  
-   ```rosrun ecg_data ecg_publisher.py```
-   
-   ```roscore```
-   
- ```roslaunch turtlebot3_gazebo turtlebot3_world.launch```
+To run the turtlebot simulation we will first need to source the ros setup.bash path in each new terminal. As a shortcut, we can instead add the source command to bashrc so it is executed everytime we open a new terminal: 
 
+```echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc ```
+
+we will also need to specify a model for the turtlebot as follows: 
+
+  
+```echo "export TURTLEBOT3_MODEL=waffle" >> ~/.bashrc```
+
+In separate terminals run the following three commands:
+
+Gazebo turtlebot3 simulations
+```roslaunch turtlebot3_gazebo turtlebot3_world.launch```
+
+Run turtlebot3_teleop package to allow you to move the turtlebot around (with w,d,a,s,x, keys)
 ```roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch```
 
-
+Rviz Slam visuaization 
 ```roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping```
 
+
+## Publishing dataset data
+
+To publish the data, go to the dev_ws and initialise it
+```cd dev_ws```
+```catkin_make```
+
+You will need to source the workspace in each terminal
+```source ~/dev_ws/devel/setup.bash```
+
+We always need to run a roscore instance for any communication to happen over ROS (roslaunch in the simulation runs roscore by default)
+```roscore```
+
+Run each of the following commands in a separate terminal to publish the respective health signal data (ecg/hr/rr)
+```rosrun ecg_data ecg_publisher.py```
+```rosrun ecg_data hr_publisher.py```
+```rosrun ecg_data rr_publisher.py```
+   
+To debug or make sure the topics are published and are recieving data, run
+```rostopic list```
+```rostopic echo /ecg_data_topic```
+
+## Data Visualization and Running the webserver 
+
+To make the data accessible for the web-application run rosbridge_server
 ```roslaunch rosbridge_server rosbridge_websocket.launch```
+
+You can then go to foxglove studio and visualize the topics of your choice
 
 https://studio.foxglove.dev/
 
