@@ -150,7 +150,7 @@ rostopic list
 rostopic echo /ecg_data_topic
 ```
 
-### Data Visualization and Running the webserver 
+### Data Visualization and Running the Webserver 
 
 To make the data accessible for the web-application run rosbridge_server
 
